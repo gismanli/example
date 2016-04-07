@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 1000px;
+            height: 500px;
+            margin: 200px auto;
+            border: 1px solid blue;
+            position: relative;
+        }
+        ul li {
+            list-style: none;
+            -webkit-transition: all 500ms;
+            -o-transition: all 500ms;
+            transition: all 500ms;
+            position: absolute;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .juzhong {
+            left: 180px;
+            z-index: 3;
+        }
+        .zuo {
+            left: 0px;
+             z-index: 2;
+        }
+        .you {
+            right: 0px;
+             z-index: 1;
+        }
+        .mohu {
+            -webkit-filter: blur(5px);
+            -o-filter: blur(5px);
+            filter: blur(5px);
+        }
+        #but1 {
+            width: 40px;
+            cursor: pointer; 
+            height: 40px;
+            border: 1px solid black;
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            margin-top: -20px;
+            background: #eee;
+        } 
+        #but2 {
+            width: 40px;
+            cursor: pointer;
+            height: 40px;
+            border:1px solid black;
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            margin-top: -20px;
+            background: #eee;
+        }
+        .div1 {
+            width:346px;
+            height: 297px;
+            z-index: 1;
+            top: 50px;
+        }
+        .div2 {
+            width:646px;
+            height: 397px;
+            z-index: 3;
+            top: 0;
+        }
+        .div3 {
+            width:346px;
+            z-index: 2;
+            height: 297px;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="but1"><p>左</p></div>
+    <ul>
+        <li class="div1 zuo suoiao mohu">
+            <img src="http://be-fe.github.io/static/images/saber/0.jpg">
+        </li>
+        <li class="div2 juzhong">
+            <img src="http://be-fe.github.io/static/images/saber/1.jpg">
+        </li>
+        <li class="div3 you suoiao mohu">
+            <img src="http://be-fe.github.io/static/images/saber/3.jpg">
+        </li>
+    </ul>
+    <div id="but2"><p>右</p></div>
+</body>
+<script type="text/javascript">
+    var time = 0,
+        a = 1,
+        arrWidth = [],
+        arrHeight = [],
+        arrTop = [],
+        arrLeft = [],
+        arrCengci = [],
+        arrClass = []
+        me = this;
+
+    var pic = document.getElementsByTagName('li');//获取图片
+    var ulli = ['.div1','.div2','.div3'];
+
+    var current = 1;
+    
+    getStyle();
+
+    time = new Date();
+
+    document.getElementById('but1').onclick = function () {
+        new Date() - time > 500 && lunbo(0);
+        time = new Date();
+    }
+
+    document.getElementById('but2').onclick = function () {
+        new Date() - time > 500 && lunbo(1);
+        time = new Date();
+    }
+
+    function lunbo(index) {
+        if (index === 0) {
+            current + 1 > 2 ? (current = 0) : (current = current + 1);
+        }
+        else {
+            current - 1 < 0 ? (current = 2) : (current = current - 1);
+        }
+
+        getStyle()
+
+        for (var i = 0; i < pic.length; i++) {
+            if (index === 0) {
+                i === 0 ? a = 2 : a = i - 1;
+            }
+            else {
+                i === 2 ? a = 0 : a = i + 1;
+            }
+            pic[i].style.width = arrWidth[a];
+            pic[i].style.height = arrHeight[a];
+            pic[i].style.top = arrTop[a] + 'px';
+            pic[i].style.left = arrLeft[a] + 'px';
+            pic[i].style.zIndex = arrCengci[a];
+            
+            if (i === current) {
+                pic[i].className =  pic[i].className.replace(/ mohu/g, '');
+            }
+            else {
+                pic[i].className += ' mohu';
+            }
+            
+        }
+    }
+
+    function getStyle() {
+        Array.prototype.forEach.call(pic, function (item, i) {
+            arrWidth[i] =  getDefaultStyle(pic[i], 'width');
+            arrHeight[i] = getDefaultStyle(pic[i], 'height');
+            arrTop[i] = item.offsetTop;
+            arrLeft[i] = item.offsetLeft;
+            arrCengci[i] = getDefaultStyle(pic[i], 'z-index');
+            arrClass[i] = getDefaultStyle(pic[i], '-webkit-filter');
+            item.style.top = arrTop[i] + 'px';
+            item.style.left = arrLeft[i] + 'px';
+        });
+    }
+
+    function getDefaultStyle(obj, attribute){  
+        return obj.currentStyle ? obj.currentStyle[attribute] : document.defaultView.getComputedStyle(obj, false)[attribute];     
+    }
+</script>
+</html>
