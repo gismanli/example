@@ -81,7 +81,7 @@ Lunbo.prototype = {
         var self = this;
         setInterval(function() {
             self.next();
-        }, self.opts.delayTime + 100);
+        }, self.opts.delayTime + 200);
     },
     init: function () {
         var self = this;
