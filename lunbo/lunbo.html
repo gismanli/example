@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 1000px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            background: rgba(0,0,0,.5);
+        }
+        ul li {
+            list-style: none;
+            position: absolute;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .juzhong {
+            left: 180px;
+            z-index: 3;
+        }
+        .zuo {
+            left: 0px;
+             z-index: 2;
+        }
+        .you {
+            right: 0px;
+             z-index: 1;
+        }
+        #but1 {
+            cursor: pointer;
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            margin-top: 34%;
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 2%;
+            z-index: 100;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        } 
+        #but2 {
+            cursor: pointer;
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            margin-top: 34%;
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 2%;
+            z-index: 100;
+            -webkit-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -ms-transform: rotate(135deg);
+            -o-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+        .div1 {
+            width:346px;
+            height: 297px;
+            z-index: 1;
+            top: 50px;
+        }
+        .div2 {
+            width:646px;
+            height: 397px;
+            z-index: 3;
+            top: 0;
+        }
+        .div3 {
+            width:346px;
+            z-index: 2;
+            height: 297px;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="wrap">
+        <div id="but1"></div>
+        <li class="item div1 zuo blur">
+            <img src="http://be-fe.github.io/static/images/saber/0.jpg">
+        </li>
+        <li class="item div2 juzhong">
+            <img src="http://be-fe.github.io/static/images/saber/1.jpg">
+        </li>
+        <li class="item div3 you blur">
+            <img src="http://be-fe.github.io/static/images/saber/3.jpg">
+        </li>
+        <div id="but2"></div>
+    </ul>
+</body>
+<script src="./lunbo.js"></script>
+<script>
+    var luobo = new Lunbo({
+        wrap: '.wrap', //父容器
+        items: '.item', //图片容器
+        autoPlay: true, //是否自动播放
+        delayTime: 1000, //动画延迟
+        isBlur: true, //是否启用模糊
+        current: 1 //不模糊index
+    });
+    document.getElementById('but1').onclick = function () {
+        luobo.prev();
+    }
+
+    document.getElementById('but2').onclick = function () {
+        luobo.next();
+    }
+</script>
+</html>

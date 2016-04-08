@@ -104,11 +104,9 @@
         arrTop = [],
         arrLeft = [],
         arrCengci = [],
-        arrClass = []
         me = this;
 
     var pic = document.getElementsByTagName('li');//获取图片
-    var ulli = ['.div1','.div2','.div3'];
 
     var current = 1;
     
@@ -166,7 +164,6 @@
             arrTop[i] = item.offsetTop;
             arrLeft[i] = item.offsetLeft;
             arrCengci[i] = getDefaultStyle(pic[i], 'z-index');
-            arrClass[i] = getDefaultStyle(pic[i], '-webkit-filter');
             item.style.top = arrTop[i] + 'px';
             item.style.left = arrLeft[i] + 'px';
         });
