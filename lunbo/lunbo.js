@@ -53,12 +53,16 @@ Lunbo.prototype = {
                 position: relative;\
             }' + this.opts.items + ' {\
                 -webkit-transition: all ' + this.opts.delayTime + 'ms;\
+                -moz-transition: all ' + this.opts.delayTime + 'ms;\
+                -ms-transition: all ' + this.opts.delayTime + 'ms;\
                 -o-transition: all ' + this.opts.delayTime + 'ms;\
                 transition: all ' + this.opts.delayTime + 'ms;\
                 position: absolute;\
             }';  
         this.opts.isBlur && (str += '.blur {\
             -webkit-filter: blur(3px);\
+            -moz-filter: blur(3px);\
+            -ms-filter: blur(3px);\
             -o-filter: blur(3px);\
             filter: blur(3px);\
         }');
