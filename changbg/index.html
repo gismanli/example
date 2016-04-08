@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    点我换背景颜色
+</body>
+<script>
+    var colors = ['blue', 'red', 'gray', 'yellow'];
+    var i = 0;
+    document.getElementsByTagName('body')[0].onclick = function () {
+        console.log(i)
+        this.style.background = colors[i];
+        i + 1 >= colors.length
+            ? i = 0
+            : i++
+    }
+</script>
+</html>
